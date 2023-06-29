@@ -15,7 +15,7 @@
 #'
 #' @export
 
-ImportForestCrop <- function(rep=getwd()){
+ImportForecolte <- function(rep=getwd()){
   load(paste(rep, "TablesBrutes.RData", sep="/"))
   load(paste(rep, "TablesElaboreesPlac.RData", sep="/"))
   plac  <- st_read(paste(rep, "Plac.gpkg", sep="/"), quiet=T)
