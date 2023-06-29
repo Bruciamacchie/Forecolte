@@ -6,7 +6,7 @@
 #'
 #' @import tidyverse
 #' @import sf
-
+#'
 #' @examples
 #' rep = "/Users/maxbruciamacchie/pCloudSync/EnCours/Possibilités/Data/Foret1"
 #' ImportForestCrop(rep)
