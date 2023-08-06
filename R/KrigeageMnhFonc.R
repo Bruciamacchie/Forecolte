@@ -10,18 +10,23 @@
 #'
 #' @examples
 #' k <- KrigeageMnhFonc(perim, plac, mnh15, idvar="Vha")
+#' plot(k)
 #'
 #' @author Bruciamacchie Max
 #'
 #' @export
 
-KrigeageMnhFonc <- function(shpPerim, shpPlac, mnh, pas = 25, idvar="Gha") {
+# shpPerim = perim
+# shpPlac = plac
+# dem = mnh15
+
+KrigeageMnhFonc <- function(shpPerim, shpPlac, dem, pas = 25, idvar="Gha") {
 
   # ------------ Fabrication du grid
   grd = st_as_sfc(st_bbox(shpPerim))
   grd = st_as_stars(grd, dx = pas, dy = pas)
 
-  mne = st_warp(src = mnh15, grd, method = "average", use_gdal = TRUE)
+  mne = st_warp(src = dem, grd, method = "average", use_gdal = TRUE)
   mne = mne[perim]
   mne = st_normalize(mne)
   names(mne) = "mnh15"
@@ -46,7 +51,6 @@ KrigeageMnhFonc <- function(shpPerim, shpPlac, mnh, pas = 25, idvar="Gha") {
   names(z)[1] <- idvar
   z$var1.var <- NULL
   z[z < 0] <- 0
-  # Gha <- z
-  # r <- z
+
   return(z)
 }
